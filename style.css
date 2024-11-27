@@ -260,7 +260,7 @@ button:hover
 
 #reset-btn:hover 
 {
-    background-color: rgba(241, 82, 74, 0.368);
+    background-color: rgb(200, 181, 140);
     color: white;
     transition: 0.2s ease;
 }
