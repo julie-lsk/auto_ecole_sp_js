@@ -1,0 +1,11 @@
+{
+    "idExpCond": 1,
+    "heureDebut": "08:30",
+    "heureFin": "10:30",
+    "nbKm": 30,
+    "date": "2024-10-03",
+    "idMeteo": 3,
+    "idEtatTrafic": 2,
+    "idConditionConduite": 1,
+    "idTypeRoute": 3
+}

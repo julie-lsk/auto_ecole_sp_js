@@ -1,0 +1,18 @@
+[
+  {
+    "idMeteo": 1,
+    "label": "Soleil"
+  },
+  {
+    "idMeteo": 2,
+    "label": "Venteux"
+  },
+  {
+    "idMeteo": 3,
+    "label": "Neigeux"
+  },
+  {
+    "idMeteo": 4,
+    "label": "Pluvieux"
+  }
+]

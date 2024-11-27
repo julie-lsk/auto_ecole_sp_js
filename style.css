@@ -1,0 +1,316 @@
+* 
+{
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+
+    @media (max-width: 600px)
+    {
+        font-size: 0.9rem;
+    }
+}
+
+body
+{
+    background-color: rgba(74, 166, 241, 0.368);
+}
+
+main
+{
+    width: 55%;
+    margin: 70px auto;
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    @media (max-width: 1400px)
+    {
+        width: 65%;
+    }
+
+    @media (max-width: 1150px)
+    {
+        width: 75%;
+    }
+
+    @media (max-width: 950px)
+    {
+        width: 85%;
+    }
+
+    @media (max-width: 768px)
+    {
+        margin: 40px auto;
+    }
+
+    @media (max-width: 768px)
+    {
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (max-width: 650px)
+    {
+        margin: 30px auto;
+    }
+}
+
+h1
+{
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 0;
+    text-align: start;
+    margin-top: 10px;
+
+    @media (max-width: 600px)
+    {
+        font-size: 1.5rem;
+    }
+}
+
+p
+{
+    margin-top: 40px;
+    font-weight: 600;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+h2
+{
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.8;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.conteneur-droit, .conteneur-gauche
+{
+    width: 50%;
+    padding: 40px;
+
+    @media (max-width: 768px)
+    {
+        padding: 30px;
+    }
+}
+
+.conteneur-gauche
+{
+    background-color: rgb(255, 237, 201);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 768px)
+    {
+        width: 100%;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+}
+
+.conteneur-gauche img
+{
+    width: 120%;
+    margin-top: 30%;
+
+    @media (max-width: 768px)
+    {
+        margin-top: 50px;
+        width: 60%;
+    }
+
+    @media (max-width: 500px)
+    {
+        margin-top: 30px;
+        width: 70%;
+    }
+
+    @media (max-width: 350px)
+    {
+        display: none;
+    }
+}
+
+.conteneur-droit
+{
+    @media (max-width: 768px)
+    {
+        width: 100%;
+    }
+}
+
+form 
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 8px;
+}
+
+label 
+{
+    margin-top: 10px;
+}
+
+select, input
+{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid rgb(74, 166, 241);
+    border-radius: 7px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+input[type="date"], input[type="time"], input[type="number"]
+{
+    cursor: text;
+}
+
+label
+{
+    font-weight: 600;
+}
+
+.checkbox-groupe
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.checkbox-groupe label 
+{
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.checkbox-groupe > input[type="checkbox"]
+{
+    margin: 0;
+    left: 0;
+    width: inherit;
+    margin-bottom: 15px;
+}
+
+.boutons-formulaire
+{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (max-width: 450px)
+    {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+button 
+{
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: rgba(74, 166, 241, 0.368);
+    color: rgb(24, 109, 178);
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    @media (max-width: 450px)
+    {
+        margin-top: 0;
+    }
+}
+
+#reset-btn
+{
+    background-color: rgb(24, 109, 178);
+    color: white;
+    max-width: 115px;
+
+    @media (max-width: 450px)
+    {
+        max-width: inherit;
+        margin-top: 20px;
+    }
+}
+
+button:hover 
+{
+    background-color: rgb(24, 109, 178);
+    color: white;
+    transition: 0.5s ease;
+}
+
+#reset-btn:hover 
+{
+    background-color: rgba(241, 82, 74, 0.368);
+    color: white;
+    transition: 0.2s ease;
+}
+
+
+
+/********** PROGESS BAR - PAGE DE RESULTAT **********/
+
+.conteneur-droit-resultats
+{
+    width: 100%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Remet les marges à 0 */
+.conteneur-droit-resultats *
+{
+    padding: 0;
+    margin: 0;
+}
+
+.conteneur-droit-resultats p
+{
+    font-size: 1rem;
+}
+
+#progression 
+{
+    width: 100%;
+    background-color: rgb(199, 199, 199);
+}
+
+#barre 
+{
+    width: 1%;
+    height: 30px;
+    background-color: rgb(74, 166, 241);
+
+    @media (max-width: 600px)
+    {
+        height: 20px;
+    }
+}
+
+span
+{
+    color: rgb(74, 166, 241);
+    font-weight: 600;
+}

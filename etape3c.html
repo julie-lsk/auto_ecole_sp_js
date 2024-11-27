@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulaire d'expérience de conduite</title>
+
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+            
+        </style>
+
+        <script>
+            // Données sur l'expérience de conduite
+            let expConduite = 
+            [
+                {
+                    "idExpCond": 1, 
+                    "heureDebut": "08:30", 
+                    "heureFin": "10:30", 
+                    "nbKm": 30, 
+                    "date": "2024-10-03", 
+                    "idMeteo": 3, 
+                    "idEtatTrafic": 2, 
+                    "idTypeManoeuvre": [1, 2 ,5], 
+                    "idTypeRoute": 3
+                },
+                {
+                    "idExpCond": 2,
+                    "heureDebut": "12:30",
+                    "heureFin": "13:30",
+                    "nbKm": 28,
+                    "date": "2024-10-10",
+                    "idMeteo": 4,
+                    "idEtatTrafic": 1,
+                    "idTypeManoeuvre": [2, 3, 6, 7],
+                    "idTypeRoute": 2
+                },
+                {
+                    "idExpCond": 3,
+                    "heureDebut": "15:00",
+                    "heureFin": "17:00",
+                    "nbKm": 68,
+                    "date": "2024-10-20",
+                    "idMeteo": 1,
+                    "idEtatTrafic": 1,
+                    "idTypeManoeuvre": [1, 2],
+                    "idTypeRoute": 4
+                }
+            ];
+            // console.log("Expériences de conduite : \n ", expConduite);
+
+            // Données sur les variables de conduite (4)
+            let meteo = 
+            [
+                {"idMeteo": 1, "typeMeteo": "Soleil"}, 
+                {"idMeteo": 2, "typeMeteo": "Vent"}, 
+                {"idMeteo": 3, "typeMeteo": "Neige"}, 
+                {"idMeteo": 4, "typeMeteo": "Verglas"},
+                {"idMeteo": 5, "typeMeteo": "Pluie"},
+                {"idMeteo": 6, "typeMeteo": "Brouillard"}
+            ];
+            // console.log("Conditions météorologiques : \n ",  meteo);
+
+            let etatTrafic =  
+            [
+                {"idEtatTrafic": 1, "densite": "Faible"}, 
+                {"idEtatTrafic": 2, "densite": "Dense"}, 
+                {"idEtatTrafic": 3, "densite": "Très dense"}
+            ];
+            // console.log("État du taffic : \n ", etatTrafic);
+
+            let manoeuvre = 
+            [
+                {"idTypeManoeuvre": 1, "manoeuvre": "Créneau"},
+                {"idTypeManoeuvre": 2, "manoeuvre": "Demi-tour"},
+                {"idTypeManoeuvre": 3, "manoeuvre": "Stationnement en épi"},
+                {"idTypeManoeuvre": 4, "manoeuvre": "Stationnement en bataille"},
+                {"idTypeManoeuvre": 5, "manoeuvre": "Marche arrière en ligne droite"},
+                {"idTypeManoeuvre": 6, "manoeuvre": "Marche arrière en courbe"},
+                {"idTypeManoeuvre": 7, "manoeuvre": "Stationnement en bataille"},
+                {"idTypeManoeuvre": 8, "manoeuvre": "Freinage de précision"},
+                {"idTypeManoeuvre": 9, "manoeuvre": "Demi-tour en trois temps"}
+            ];
+            // console.log("Types de manoeuvres réalisées : \n", manoeuvre)
+            
+            let typeRoute = 
+            [
+                {"idTypeRoute": 1, "route": "Autoroute"}, 
+                {"idTypeRoute": 2, "route": "Zone urbaine"}, 
+                {"idTypeRoute": 3, "route": "Montagne"}, 
+                {"idTypeRoute": 4, "route": "Départementale"}
+            ];
+            // console.log("Types de de routes empruntées : \n ", typeRoute);
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <main>
+
+            <section class="conteneur-gauche">
+
+                <h1>Enregistrez votre expérience de conduite</h1> 
+
+                <p>Ce formulaire vous permet de détailler vos trajets effectués en conduite accompagnée : itinéraire, durée, conditions... Tout ce qu'il faut pour suivre vos progrès.</p>
+
+                <img src="img/voiture.png" alt="Image d'une voiture bleue avec 2 passagers" id="img-voiture">
+
+            </section>
+            
+            <section class="conteneur-droit">
+                
+                <form id="formulaire" action="resultats.html">
+                    <label for="date">Date de la session de conduite :</label>
+                    <input type="date" id="date" name="date" required>
+
+                    <label for="startTime">Heure de début :</label>
+                    <input type="time" id="startTime" name="startTime" required>
+
+                    <label for="endTime">Heure de fin :</label>
+                    <input type="time" id="endTime" name="endTime" required>
+
+                    <label for="nbKm">Nombre de kilomètres parcourus :</label>
+                    <input type="number" id="nbKm" name="nbKm" min="1" required onkeyup="recupValeurNbKm(this.value)">
+                    
+
+                    <label for="meteo">Quelles conditions météorologiques ont été rencontrées ?</label>
+                    <select id="meteo" name="meteo" required>
+                        <option value="">-- Sélectionnez une option --</option>    
+                    </select>
+
+
+                    <label for="trafic">Comment était l'état du trafic ?</label>
+                    <select id="trafic" name="trafic" required>
+                        <option value="">-- Sélectionnez une option --</option>  
+                    </select>
+
+
+                    <label for="manoeuvres">Quelles manoeuvres on été réalisées ?</label>
+                    <div class="checkbox-groupe"> </div>
+
+                    <label for="route">Type de route :</label>
+                    <select id="route" name="route" required>
+                        <option value="">-- Sélectionnez une option --</option> 
+                    </select>
+
+                    <div class="boutons-formulaire">
+                        <button type="reset" id="reset-btn">Réinitaliser</button>
+                        <button type="submit">Enregistrer mon expérience de conduite</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+    </body>
+
+    <script>
+        // ********** Ajout des balises dans le HTML **********
+
+        // localStorage.clear()
+        // Météo : 
+        meteo.forEach((item) => 
+        {
+            // Création des options et personnalisation
+            let codeOptionsMeteo = `<option value="${item.idMeteo}">${item.typeMeteo}</option>`;
+
+            // Ajout des options dans la balise select, après la 1ère option par défaut
+            document.getElementById("meteo").insertAdjacentHTML("beforeend", codeOptionsMeteo);
+        });
+
+        // État du trafic : 
+        etatTrafic.forEach((item) => 
+        {
+            // Création des options et personnalisation
+            let codeOptionsTrafic = `<option value="${item.idEtatTrafic}">${item.densite}</option>`;
+
+            // Ajout des options dans la balise select, après la 1ère option par défaut
+            document.getElementById("trafic").insertAdjacentHTML("beforeend", codeOptionsTrafic);
+        });
+
+        // Types de manoeuvres : 
+        manoeuvre.forEach((item) => 
+        {
+            // Création des options et personnalisation
+            let codeOptionsManoeuvre = 
+            `
+                <input 
+                    type="checkbox" 
+                    id="${item.idTypeManoeuvre}" 
+                    name="manoeuvres" 
+                    value="${item.manoeuvre}"
+                > 
+                <label for="manoeuvre-${item.idTypeManoeuvre}">
+                    ${item.manoeuvre}
+                </label> <br>
+            `;
+
+            // Ajout des options dans la balise select, après la 1ère option par défaut
+            document.querySelector(".checkbox-groupe").insertAdjacentHTML("beforeend", codeOptionsManoeuvre);
+        });
+
+        // Types de routes : 
+        typeRoute.forEach((item) => 
+        {
+            // Création des options et personnalisation
+            let codeOptionsRoute = `<option value="${item.idTypeRoute}">${item.route}</option>`;
+
+            // Ajout des options dans la balise select, après la 1ère option par défaut
+            document.getElementById("route").insertAdjacentHTML("beforeend", codeOptionsRoute);
+        });
+
+
+
+        // ********** Recherche du dernier n° idExpCond **********
+
+        // Récup des dernières données du LocalStorage
+        let expConduiteLocalStorage = localStorage.getItem('listeExpConduite');
+        let expConduiteLocalStorageJSON = JSON.parse(expConduiteLocalStorage)
+        console.log("Le plus récent objet d'expConduite provenant du LocalStorage : ", expConduiteLocalStorageJSON);
+
+        // Vérifie s'il y a des données dans le LocalStorage
+        if (expConduiteLocalStorageJSON != null)
+        {
+            expConduiteLocalStorageJSON.forEach((item) =>
+            {
+                let verifIdExpConduite = expConduite.find(element => element.idExpCond === item.idExpCond)
+        
+                // Si l'élément avec cet id n'existe pas, on l'ajoute
+                if (!verifIdExpConduite)
+                {
+                    expConduite.push(item)
+                } 
+            })
+        }
+
+
+
+        console.log("Notre expConduite, normalement à jour : ", expConduite)
+
+        // On cherche le dernier numéro de idExpCond de la liste d'objet
+        let lastValueIdExpCond = expConduite[expConduite.length - 1]["idExpCond"]
+        console.log("Dernier idExpCond enregistré : ", lastValueIdExpCond)
+
+        // On créé le nouveau numéro assigné à la nouvelle expConduite
+        let newValueIdExpCond = lastValueIdExpCond 
+
+        if (lastValueIdExpCond != 1)
+        {
+            newValueIdExpCond++
+        } else {
+            newValueIdExpCond = 1
+        }
+
+        console.log("Prochain idExpCond : ", newValueIdExpCond)
+
+
+
+
+
+        
+        // ********** Enregistrement des données du formulaire dans le LocalStorage **********
+
+        // On cherche le formulaire et on ajoute des actions activées quand il est envoyé
+        let formulaire = document.getElementById("formulaire");
+        formulaire.addEventListener("submit", (e) =>
+        {
+            // Récup des données saisies dans le formulaire
+            dateSaisie = document.getElementById('date').value;
+            heureDebutSaisie = document.getElementById('startTime').value;
+            heureFinSaisie = document.getElementById('endTime').value;
+            nbKmSaisie = document.getElementById('nbKm').value;
+            conditionsMeteoSaisie = document.getElementById('meteo').value;
+            etatTraficSaisi = document.getElementById('trafic').value;
+            typeRouteSaisie = document.getElementById('route').value;
+
+            manoeuvresSelectionnees = document.querySelectorAll("input[type='checkbox']:checked");
+            // Tableau qui contient la liste des case cochées 
+            let listeCheckbox = [];
+            // Pour chaque case cochée...
+            for (let checkboxChecked of manoeuvresSelectionnees)
+            {
+                // On prend l'id de la donnée et on l'ajoute au tableau (à la liste)
+                listeCheckbox.push(checkboxChecked.id);
+            };
+            
+            // Création du nouvel objet avec les données de la nouvelle expérience de conduite
+            let newObjetExpConduite = {
+                "idExpCond": newValueIdExpCond,
+                "heureDebut": heureDebutSaisie,
+                "heureFin": heureFinSaisie,
+                "nbKm": parseInt(nbKmSaisie),
+                "date": dateSaisie,
+                "idMeteo": conditionsMeteoSaisie,
+                "idEtatTrafic": etatTraficSaisi,
+                "idTypeManoeuvre": listeCheckbox,
+                "idTypeRoute": typeRouteSaisie
+            };
+    
+            console.log(newObjetExpConduite)
+
+            // Ajout de la nouvelle expérience dans le tableau initial expConduite
+            expConduite.push(newObjetExpConduite);
+
+            // Transformation du tableau d'objets en string
+            let newExpConduiteString = JSON.stringify(expConduite);
+
+            // Ajout de la dernière version d'expConduite dans le localStorage 
+            localStorage.setItem("listeExpConduite", newExpConduiteString);
+
+            // Réinitialise le formulaire
+            window.location.reload()
+        })
+
+
+        // ********** Ajout du résultat de la distance parcourue en direct **********
+
+        let inputNbKm = document.getElementById('nbKm');
+        // Création du paragraphe qui aura le résultat
+        let apercuResultatNbKm = document.createElement('h2');
+
+        function recupValeurNbKm(valeur)
+        {
+            // Somme des km déjà enregistrés
+            let sommeNbKmEnregistres = expConduite.reduce((accumulateur, valeurCourante) => accumulateur + valeurCourante.nbKm, 0) /* 0 = valeur initial de l'accumulateur (le total) */
+
+            // Pour placer le p avant l'img
+            let imgVoiture = document.getElementById("img-voiture");
+            // Sélection du parent de l'img (section gauche)
+            let sectionGauche = imgVoiture.parentNode;   
+            
+            // Affichage dynamique
+            apercuResultatNbKm.innerText = `Grâce à cette session, vous avez parcourus ${valeur ? parseInt(valeur) + sommeNbKmEnregistres : sommeNbKmEnregistres} km au total !`;
+            apercuResultatNbKm.style.transition = "all 0.4s ease"
+            
+            sectionGauche.insertBefore(apercuResultatNbKm, imgVoiture);  
+        }
+
+        // MAJ des nbKm à 0 si clic sur le bouton reset
+        let btnReset = document.getElementById('reset-btn')
+        btnReset.addEventListener('click', () =>
+        {
+            recupValeurNbKm(0)
+        })
+
+    </script>
+
+</html>

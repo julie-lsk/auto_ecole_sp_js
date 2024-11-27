@@ -1,0 +1,10 @@
+[
+    {
+        "idConditionConduite": 1,
+        "label": "Jour"
+    },
+    {
+        "idConditionConduite": 2,
+        "label": "Nuit"
+    }
+]

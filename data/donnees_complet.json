@@ -1,0 +1,78 @@
+[
+    { 
+        "meteo":
+        [
+            {"idMeteo": 1,"typeMeteo": "Soleil"},
+            {"idMeteo": 2,"typeMeteo": "Venteux"},
+            {"idMeteo": 3,"typeMeteo": "Neigeux"},
+            {"idMeteo": 4,"typeMeteo": "Pluvieux"}
+        ],
+        
+        "etatTrafic": 
+        [
+            {"idEtatTrafic": 1, "densite": "Faible"},
+            {"idEtatTrafic": 2, "densite": "Dense"},
+            {"idEtatTrafic": 3, "densite": "Très dense"}
+        ],
+
+        "manoeuvre":
+        [
+            {"idTypeManoeuvre": 1, "manoeuvre": "Créneau"},
+            {"idTypeManoeuvre": 2, "manoeuvre": "Demi-tour"},
+            {"idTypeManoeuvre": 3, "manoeuvre": "Stationnement en épi"},
+            {"idTypeManoeuvre": 4, "manoeuvre": "Stationnement en bataille"},
+            {"idTypeManoeuvre": 5, "manoeuvre": "Marche arrière en ligne droite"},
+            {"idTypeManoeuvre": 6, "manoeuvre": "Marche arrière en courbe"},
+            {"idTypeManoeuvre": 7, "manoeuvre": "Stationnement en bataille"},
+            {"idTypeManoeuvre": 8, "manoeuvre": "Freinage de précision"},
+            {"idTypeManoeuvre": 9, "manoeuvre": "Demi-tour en trois temps"}
+        ],
+
+        "typeRoute":
+        [
+            {"idTypeRoute": 1, "route": "Autoroute"},
+            {"idTypeRoute": 2, "route": "Zone urbaine"},
+            {"idTypeRoute": 3, "route": "Montagne"},
+            {"idTypeRoute": 4, "route": "Départementale"}
+        ]
+    },
+
+    {
+        "expConduite":
+        [
+            {
+                "idExpCond": 1,
+                "heureDebut": "08:30",
+                "heureFin": "10:30",
+                "nbKm": 30,
+                "date": "2024-10-03",
+                "idMeteo": 3,
+                "idEtatTrafic": 2,
+                "idTypeManoeuvre": [1, 3, 4],
+                "idTypeRoute": 3
+            },
+            {
+                "idExpCond": 2,
+                "heureDebut": "12:30",
+                "heureFin": "13:30",
+                "nbKm": 28,
+                "date": "2024-10-10",
+                "idMeteo": 4,
+                "idEtatTrafic": 1,
+                "idTypeManoeuvre": [2, 3, 6, 7],
+                "idTypeRoute": 2
+            },
+            {
+                "idExpCond": 3,
+                "heureDebut": "15:00",
+                "heureFin": "17:00",
+                "nbKm": 68,
+                "date": "2024-10-20",
+                "idMeteo": 1,
+                "idEtatTrafic": 1,
+                "idTypeManoeuvre": [1, 2],
+                "idTypeRoute": 4
+            }
+        ]
+    }
+]

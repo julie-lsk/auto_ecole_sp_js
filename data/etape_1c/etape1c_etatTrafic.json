@@ -1,0 +1,14 @@
+[
+    {
+        "idEtatTrafic": 1,
+        "label": "Faible"
+    },
+    {
+        "idEtatTrafic": 2,
+        "label": "Dense"
+    },
+    {
+        "idEtatTrafic": 3, 
+        "label": "Très dense"
+    }
+]

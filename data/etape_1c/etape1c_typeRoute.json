@@ -1,0 +1,18 @@
+[
+    {
+        "idTypeRoute": 1, 
+        "label": "Autoroute"
+    },
+    {
+        "idTypeRoute": 2, 
+        "label": "Zone urbaine"
+    },
+    {
+        "idTypeRoute": 3, 
+        "label": "Montagne"
+    },
+    {
+        "idTypeRoute": 4, 
+        "label": "Départementale"
+    }
+]

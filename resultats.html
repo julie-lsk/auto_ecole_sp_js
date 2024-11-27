@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Résultat de votre expérience de conduite</title>
+
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+            
+        </style>
+
+
+        <script>
+            // Données sur l'expérience de conduite
+            let expConduite = 
+            [
+                {
+                    "idExpCond": 1, 
+                    "heureDebut": "08:30", 
+                    "heureFin": "10:30", 
+                    "nbKm": 30, 
+                    "date": "2024-10-03", 
+                    "idMeteo": 3, 
+                    "idEtatTrafic": 2, 
+                    "idTypeManoeuvre": [1, 2 ,5], 
+                    "idTypeRoute": 3
+                },
+                {
+                    "idExpCond": 2,
+                    "heureDebut": "12:30",
+                    "heureFin": "13:30",
+                    "nbKm": 28,
+                    "date": "2024-10-10",
+                    "idMeteo": 4,
+                    "idEtatTrafic": 1,
+                    "idTypeManoeuvre": [2, 3, 6, 7],
+                    "idTypeRoute": 2
+                },
+                {
+                    "idExpCond": 3,
+                    "heureDebut": "15:00",
+                    "heureFin": "17:00",
+                    "nbKm": 68,
+                    "date": "2024-10-20",
+                    "idMeteo": 1,
+                    "idEtatTrafic": 1,
+                    "idTypeManoeuvre": [1, 2],
+                    "idTypeRoute": 4
+                }
+            ];
+            // console.log("Expériences de conduite : \n ", expConduite);
+
+            // Données sur les variables de conduite (4)
+            let meteo = 
+            [
+                {"idMeteo": 1, "typeMeteo": "Soleil"}, 
+                {"idMeteo": 2, "typeMeteo": "Vent"}, 
+                {"idMeteo": 3, "typeMeteo": "Neige"}, 
+                {"idMeteo": 4, "typeMeteo": "Verglas"},
+                {"idMeteo": 5, "typeMeteo": "Pluie"},
+                {"idMeteo": 6, "typeMeteo": "Brouillard"}
+            ];
+            // console.log("Conditions météorologiques : \n ",  meteo);
+
+            let etatTrafic =  
+            [
+                {"idEtatTrafic": 1, "densite": "Faible"}, 
+                {"idEtatTrafic": 2, "densite": "Dense"}, 
+                {"idEtatTrafic": 3, "densite": "Très dense"}
+            ];
+            // console.log("État du taffic : \n ", etatTrafic);
+
+            let manoeuvre = 
+            [
+                {"idTypeManoeuvre": 1, "manoeuvre": "Créneau"},
+                {"idTypeManoeuvre": 2, "manoeuvre": "Demi-tour"},
+                {"idTypeManoeuvre": 3, "manoeuvre": "Stationnement en épi"},
+                {"idTypeManoeuvre": 4, "manoeuvre": "Stationnement en bataille"},
+                {"idTypeManoeuvre": 5, "manoeuvre": "Marche arrière en ligne droite"},
+                {"idTypeManoeuvre": 6, "manoeuvre": "Marche arrière en courbe"},
+                {"idTypeManoeuvre": 7, "manoeuvre": "Stationnement en bataille"},
+                {"idTypeManoeuvre": 8, "manoeuvre": "Freinage de précision"},
+                {"idTypeManoeuvre": 9, "manoeuvre": "Demi-tour en trois temps"}
+            ];
+            // console.log("Types de manoeuvres réalisées : \n", manoeuvre)
+            
+            let typeRoute = 
+            [
+                {"idTypeRoute": 1, "route": "Autoroute"}, 
+                {"idTypeRoute": 2, "route": "Zone urbaine"}, 
+                {"idTypeRoute": 3, "route": "Montagne"}, 
+                {"idTypeRoute": 4, "route": "Départementale"}
+            ];
+            // console.log("Types de de routes empruntées : \n ", typeRoute);
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <main>
+            
+            <section class="conteneur-droit-resultats">
+
+                <h1>Bravo !</h1>
+
+                <h2>Votre expérience de conduite a été ajoutée</h2>
+                
+                <div id="progression">
+                    <div id="barre"></div>
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <script>
+
+            // Récup des données dans le LocalStorage
+            let listeExpConduiteLocalStorage = localStorage.getItem("listeExpConduite");
+
+            // Mise en forme en JSON
+            let expConduiteAJour = JSON.parse(listeExpConduiteLocalStorage);
+            console.log(expConduiteAJour);
+            
+            // Total km enregistrés
+            let sommeNbKmEnregistres = expConduiteAJour.reduce((accumulateur, valeurCourante) => accumulateur + valeurCourante.nbKm, 0);
+
+            // ********** Phrase indiquant les km parcourus **********
+            let phraseRecapKm = document.createElement("p");
+            let nbKmActuelStyle = document.createElement('span'); /* pour mise en valeur du nbKm */
+            nbKmActuelStyle.textContent = `${sommeNbKmEnregistres}`;
+            phraseRecapKm.textContent = "Vous avez parcouru ";
+            phraseRecapKm.appendChild(nbKmActuelStyle);
+            phraseRecapKm.appendChild(document.createTextNode(" km sur 3000"));
+
+
+            let progressBar = document.getElementById('progression');
+            let sectionParent = progressBar.parentNode;
+            sectionParent.insertBefore(phraseRecapKm, progressBar);
+
+            // Km restants à parcourir
+            let resteAParcourir = 3000 - sommeNbKmEnregistres;
+
+            // % de progression
+            let pourcentageProgression = sommeNbKmEnregistres/3000*100;
+
+            // Style de la barre de progression
+            let barre = document.getElementById("barre");
+            barre.style.width = `${pourcentageProgression}%`;
+
+
+            // ********** Phrase indiquant les km restants à parcourir **********
+            let conteneur = document.querySelector('.conteneur-droit-resultats');
+            let phraseKmRestants = document.createElement('p');
+            let nbKmRestantsStyle = document.createElement('span'); /* pour mise en valeur du nbKm */
+
+            nbKmRestantsStyle.textContent = `${resteAParcourir}`
+            phraseKmRestants.textContent = "Il vous reste ";
+            phraseKmRestants.appendChild(nbKmRestantsStyle);
+            phraseKmRestants.appendChild(document.createTextNode(" km à parcourir ! Vous y êtes presque !"))
+
+            conteneur.appendChild(phraseKmRestants);
+
+        </script>
+
+    </body>
+
+</html>
